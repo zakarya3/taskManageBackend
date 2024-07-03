@@ -11,7 +11,14 @@ export class UsersService {
     private readonly userRepo: Repository<UserEntity>,
   ) {}
   async findOne(username: string) {
-    return await this.userRepo.findOne({ where: { username } });
+    return await this.userRepo.findOne({
+      where: { username },
+      select: { password: true },
+    });
+  }
+
+  async findOneById(id: number) {
+    return await this.userRepo.findOne({ where: { id } });
   }
 
   async create(createUser: CreateUserDto) {

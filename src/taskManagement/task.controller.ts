@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
@@ -32,8 +33,11 @@ export class TaskController {
   }
 
   @Post()
-  create(@Body() createTask: CreateTaskDto): Promise<TaskEntity> {
-    return this.taskService.create(createTask);
+  create(
+    @Body() createTask: CreateTaskDto,
+    @Req() req: any,
+  ): Promise<TaskEntity> {
+    return this.taskService.create(createTask, req.user.id);
   }
 
   @Put(':id')

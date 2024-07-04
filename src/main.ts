@@ -7,9 +7,14 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
-    origin: ['https://taskfrontend-ivof.onrender.com/'],
-    credentials: true,
-  });
+  origin: ['https://taskfrontend-ivof.onrender.com'],
+  credentials: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type, Authorization',
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+});
+
   await app.listen(3000);
 }
 bootstrap();

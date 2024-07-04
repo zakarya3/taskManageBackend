@@ -7,7 +7,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
-    origin: '*',
+    origin: ['https://taskfrontend-ivof.onrender.com/'],
     credentials: true,
   });
   await app.listen(3000);
